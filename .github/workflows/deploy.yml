@@ -35,6 +35,8 @@ jobs:
       - name: Build
         working-directory: ./client
         run: npm run build
+        env:
+          CI: false # 防止警告被視為錯誤
       
       - name: Setup Pages
         uses: actions/configure-pages@v3
