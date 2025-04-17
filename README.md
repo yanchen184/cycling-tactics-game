@@ -2,6 +2,8 @@
 
 版本: 0.1.0
 
+[![Deploy to GitHub Pages](https://github.com/yanchen184/cycling-tactics-game/actions/workflows/deploy.yml/badge.svg)](https://github.com/yanchen184/cycling-tactics-game/actions/workflows/deploy.yml)
+
 ## 專案概述
 
 「風馳電掣」是一款回合制的腳踏車戰略遊戲，基於破風戰術和團隊配合。玩家需要組建三人單車隊伍，並透過巧妙的破風策略和角色輪換來擊敗對手。
@@ -77,20 +79,37 @@ cycling-tactics-game/
 
 ## 啟動專案
 
-1. 進入客戶端目錄：
+1. 克隆倉庫：
    ```
-   cd client
+   git clone https://github.com/yanchen184/cycling-tactics-game.git
    ```
 
 2. 安裝依賴：
    ```
    npm install
    ```
+   或者
+   ```
+   cd client && npm install
+   ```
 
 3. 啟動開發服務器：
    ```
    npm start
    ```
+   或者
+   ```
+   cd client && npm start
+   ```
+
+4. 構建生產版本：
+   ```
+   npm run build
+   ```
+
+## 自動部署
+
+本項目使用 GitHub Actions 自動部署到 GitHub Pages。每當推送到 `main` 分支時，會自動觸發構建和部署流程。
 
 ## 未來計劃
 
