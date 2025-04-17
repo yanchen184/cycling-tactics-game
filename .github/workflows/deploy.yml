@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -28,15 +28,25 @@ jobs:
           cache: 'npm'
           cache-dependency-path: client/package-lock.json
       
+      - name: Debug working directory
+        run: |
+          pwd
+          ls -la
+          echo "Repository name ${{ github.repository }}"
+      
       - name: Install dependencies
         working-directory: ./client
-        run: npm ci
+        run: npm install
       
       - name: Build
         working-directory: ./client
         run: npm run build
         env:
           CI: false # 防止警告被視為錯誤
+      
+      - name: Debug build output
+        run: |
+          ls -la ./client/build || echo "Build directory does not exist"
       
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -45,6 +55,13 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: './client/build'
+      
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./client/build
+          branch: gh-pages
+          clean: true
 
   deploy:
     environment:
